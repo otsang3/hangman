@@ -4,8 +4,7 @@ function Header() {
 
     return(
         <div>
-            <h1>Header</h1>
-            <h2>Type a letter to guess</h2>
+            <h1>Hangman</h1>
         </div>
     )
 }
