@@ -7,7 +7,7 @@ function GameWindow() {
 
     const initialState = {
         category: "",
-        correctLetters: [],
+        guesses: ["a", "b", "d", "e", "s"],
         playGame: false,
         remainingLetters: [],
         word: "",
@@ -39,7 +39,7 @@ function GameWindow() {
     return(
         <div>
             {state.category ? 
-            <GameRender category={state.category}/> 
+            <GameRender category={state.category} guesses={state.guesses} word={state.word}/> 
             :
             <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>
             }

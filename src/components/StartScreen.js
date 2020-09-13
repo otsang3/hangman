@@ -7,17 +7,12 @@ function StartScreen(props) {
     }
 
     const renderCategories = () => {
+        let index = 0;
         let buttonsArr = [];
         for (let category in props.words[0].categories) {
-            buttonsArr.push(<button onClick={() => props.selectCategory(category)}>{capitaliseFirstLetter(category)}</button>)
+            buttonsArr.push(<button key={index} onClick={() => props.selectCategory(category)}>{capitaliseFirstLetter(category)}</button>);
+            index += 1;
         }
-        // return props.words[0].categories.map((word, index) => {
-        //     const category = capitaliseFirstLetter(Object.keys(word)[0]);
-        //     return(
-        //         <button onClick={() => props.selectCategory(category)} key={index}>{category}</button>
-        //     )
-        // })
-        console.log(buttonsArr);
         return buttonsArr;
     }
 
