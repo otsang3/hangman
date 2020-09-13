@@ -16,23 +16,32 @@ function GameWindow() {
 
     const [state, setState] = useState(initialState);
 
+    const getWord = (category) => {
+        const categoryArr = wordsArr[0].categories[category]
+        const randomNum = Math.floor(Math.random() * categoryArr.length)
+        setState(prevState => {
+            return {
+                ...prevState,
+                word: categoryArr[randomNum]
+            }
+        })
+    }
+
     const selectCategory = (category) => {
-        const saveCategory = category;
-        console.log(saveCategory);
         setState(prevState => {
             return {
                 ...prevState,
                 category: category
             }
-        })
+        }, getWord(category))
     }
 
     return(
         <div>
             {state.category ? 
-            <GameRender/> 
+            <GameRender category={state.category}/> 
             :
-            <StartScreen selectCategory={selectCategory} words={wordsArr}/>
+            <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>
             }
         </div>
     )

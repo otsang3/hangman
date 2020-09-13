@@ -1,20 +1,17 @@
 export const wordsArr = [
     {
-        categories: [
-            {
+        categories: {
                 countries: [
                     "england",
                     "scotland",
                     "wales"
                 ]
-            },
-            {
+            ,
                 sports: [
                     "basketball",
                     "football",
                     "tennis"
-                ]
-            }
-        ]
+                ]   
+        }
     }
 ]

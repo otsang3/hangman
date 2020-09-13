@@ -1,10 +1,11 @@
 import React from 'react';
 
-function GameRender() {
+function GameRender(props) {
 
     return(
         <div>
-            Game Rendered
+            <h3>Type a letter to start guessing</h3>
+            <p>Category: {props.category}</p>
         </div>
     )
 }
