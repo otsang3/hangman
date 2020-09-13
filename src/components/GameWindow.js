@@ -7,7 +7,7 @@ function GameWindow() {
 
     const initialState = {
         category: "",
-        guesses: ["a", "b", "d", "e", "s"],
+        guesses: [],
         playGame: false,
         remainingGuesses: 5,
         remainingLetters: [],
@@ -28,11 +28,25 @@ function GameWindow() {
         })
     }
 
-    const incorrectGuess = () => {
+    const incorrectGuess = (letter) => {
         setState(prevState => {
             return {
                 ...prevState,
-                remainingGuesses: prevState.remainingGuesses - 1
+                remainingGuesses: prevState.remainingGuesses - 1,
+                wrongLetters: [...prevState.wrongLetters, letter]
+            }
+        })
+    }
+
+    const guessLetter = (letter) => {
+        if (!state.word.includes(letter)) {
+            incorrectGuess(letter);
+        } 
+
+        setState(prevState => {
+            return {
+                ...prevState,
+                guesses: [...prevState.guesses, letter]
             }
         })
     }
@@ -52,7 +66,7 @@ function GameWindow() {
             <GameRender 
             category={state.category} 
             guesses={state.guesses} 
-            incorrectGuess={incorrectGuess}
+            guessLetter={guessLetter}
             word={state.word}/> 
             :
             <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>

@@ -5,7 +5,7 @@ function GameRender(props) {
     const keypressHandler = (e) => {
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
         if (alphabet.includes(e.key)) {
-            console.log("valid key");
+            props.guessLetter(e.key);
         } else {
             console.log("invalid key")
         }
