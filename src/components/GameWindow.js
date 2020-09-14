@@ -10,7 +10,7 @@ function GameWindow() {
         guesses: [],
         playGame: false,
         remainingGuesses: 5,
-        remainingLetters: [],
+        remainingLetters: "",
         word: "",
         wrongLetters: []
     }
@@ -20,10 +20,44 @@ function GameWindow() {
     const getWord = (category) => {
         const categoryArr = wordsArr[0].categories[category]
         const randomNum = Math.floor(Math.random() * categoryArr.length)
+        const randomWord = categoryArr[randomNum]
         setState(prevState => {
             return {
                 ...prevState,
-                word: categoryArr[randomNum]
+                remainingLetters: randomWord.length,
+                word: randomWord
+            }
+        })
+    }
+
+    const checkForRepeat = (letter) => {
+
+        if (state.guesses.length === 0) {
+            return false;
+        } else {
+            for (let char of state.guesses) {
+                if (char === letter) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+
+    const correctGuess = (letter) => {
+        const wordSplit = state.word.split("");
+        let occurrence = 0;
+        for (let char of wordSplit) {
+            if (letter === char) {
+                occurrence += 1
+            }
+        }
+        setState(prevState => {
+            return {
+                ...prevState,
+                guesses: [...prevState.guesses, letter],
+                remainingLetters: prevState.remainingLetters - occurrence
             }
         })
     }
@@ -32,6 +66,7 @@ function GameWindow() {
         setState(prevState => {
             return {
                 ...prevState,
+                guesses: [...prevState.guesses, letter],
                 remainingGuesses: prevState.remainingGuesses - 1,
                 wrongLetters: [...prevState.wrongLetters, letter]
             }
@@ -39,17 +74,17 @@ function GameWindow() {
     }
 
     const guessLetter = (letter) => {
-        if (!state.word.includes(letter)) {
-            incorrectGuess(letter);
-        } 
 
-        setState(prevState => {
-            return {
-                ...prevState,
-                guesses: [...prevState.guesses, letter]
+            let keyRepeat = checkForRepeat(letter)
+            if (!keyRepeat) {
+                if (!state.word.includes(letter)) {
+                    return incorrectGuess(letter);
+                } else {
+                    return correctGuess(letter);
+                }
             }
-        })
-    }
+        }
+    
 
     const selectCategory = (category) => {
         setState(prevState => {
@@ -62,12 +97,14 @@ function GameWindow() {
 
     return(
         <div>
-            {state.category ? 
+            {console.log(state.guesses)}
+            {state.category && state.remainingGuesses > 0 ? 
             <GameRender 
             category={state.category} 
             guesses={state.guesses} 
             guessLetter={guessLetter}
-            word={state.word}/> 
+            word={state.word}
+            wrongLetters={state.wrongLetters}/> 
             :
             <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>
             }

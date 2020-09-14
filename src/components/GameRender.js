@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 function GameRender(props) {
 
     const keypressHandler = (e) => {
+        console.log(props.guesses);
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
         if (alphabet.includes(e.key)) {
             props.guessLetter(e.key);
@@ -12,8 +13,17 @@ function GameRender(props) {
     }
 
     useEffect(() => {
-        window.addEventListener("keypress", (e) => keypressHandler(e))
-    }, [])
+        window.addEventListener("keypress", keypressHandler);
+        return () => window.removeEventListener("keypress", keypressHandler)  
+    }, [props.guesses])
+
+    const renderGuesses = () => {
+        return props.guesses.map((guess, index) => {
+            return(
+                <span key={index}>{guess.toUpperCase()}</span>
+            )
+        })
+    }
 
     const renderLetters = () => {
         let lettersArr = []
@@ -38,6 +48,9 @@ function GameRender(props) {
         <div>
             <h3>Type a letter to start guessing</h3>
             <p>Category: {props.category}</p>
+            <label>Used Letters: </label>
+            {renderGuesses()}
+            <br/>
             {renderLetters()}
         </div>
     )
