@@ -86,6 +86,10 @@ function GameWindow() {
             }
         }        
     }
+
+    const resetGame = () => {
+        setState(initialState)
+    };
     
 
     const selectCategory = (category) => {
@@ -112,7 +116,7 @@ function GameWindow() {
             wrongLetters={state.wrongLetters}/> 
             }
             {(state.remainingGuesses === 0 || state.remainingLetters === 0) &&
-            <Result remainingLetters={state.remainingLetters} word={state.word}/>
+            <Result remainingLetters={state.remainingLetters} resetGame={resetGame} word={state.word}/>
             }
         </div>
     )
