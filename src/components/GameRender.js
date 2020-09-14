@@ -48,11 +48,14 @@ function GameRender(props) {
             {props.remainingGuesses > 0 ? 
             <h3>Type a letter to start guessing</h3>
             :
-            <h3>Click "play again" to choose a new word!</h3>
+            <h3>Click "Play again" to choose a new word!</h3>
             }
+            <div className="subheader-container">
+                <p>Category: {props.capitaliseFirstLetter(props.category)}</p>
+                <p>Remaining Guesses: {props.remainingGuesses}</p>
+            </div>
             
-            <p style={{marginTop: "4em"}}>Category: {props.capitaliseFirstLetter(props.category)}</p>
-            <label>Used Letters: </label>
+            <label style={{marginLeft: "1.05em"}}>Used Letters: </label>
             {renderGuesses()}
             <br/>
             <div className="answer">
