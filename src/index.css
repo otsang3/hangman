@@ -12,6 +12,41 @@ code {
     monospace;
 }
 
+h1, h2, h3 {
+  text-align: center;
+}
+
+label {
+  margin: 5em 0em;
+}
+
 span {
   margin: 0em 0.25em;
 }
+
+.answer {
+  font-size: 2rem;
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  margin: 0 auto;
+}
+
+.categories-list {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.reset-button {
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+}
+
+

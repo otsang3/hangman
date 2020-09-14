@@ -10,7 +10,7 @@ function GameWindow() {
         category: "",
         guesses: [],
         playGame: false,
-        remainingGuesses: 5,
+        remainingGuesses: 6,
         remainingLetters: "",
         word: "",
         wrongLetters: []
@@ -29,6 +29,10 @@ function GameWindow() {
                 word: randomWord
             }
         })
+    }
+
+    const capitaliseFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
     const checkForRepeat = (letter) => {
@@ -105,18 +109,27 @@ function GameWindow() {
     return(
         <div>
             {!state.playGame &&
-            <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>
+            <StartScreen 
+            capitaliseFirstLetter={capitaliseFirstLetter}
+            getWord={getWord} 
+            selectCategory={selectCategory} 
+            words={wordsArr}/>
             }
             {(state.remainingLetters != 0 || state.remainingGuesses > 0) && state.category &&
             <GameRender 
+            capitaliseFirstLetter={capitaliseFirstLetter}
             category={state.category} 
             guesses={state.guesses} 
             guessLetter={guessLetter}
-            word={state.word}
-            wrongLetters={state.wrongLetters}/> 
+            remainingGuesses={state.remainingGuesses}
+            word={state.word}/> 
             }
             {(state.remainingGuesses === 0 || state.remainingLetters === 0) &&
-            <Result remainingLetters={state.remainingLetters} resetGame={resetGame} word={state.word}/>
+            <Result 
+            capitaliseFirstLetter={capitaliseFirstLetter}
+            remainingLetters={state.remainingLetters} 
+            resetGame={resetGame} 
+            word={state.word}/>
             }
         </div>
     )

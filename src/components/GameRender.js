@@ -19,7 +19,7 @@ function GameRender(props) {
     const renderGuesses = () => {
         return props.guesses.map((guess, index) => {
             return(
-                <span key={index}>{guess.toUpperCase()}</span>
+                <span style={{color: "grey"}} key={index}>{guess.toUpperCase()}</span>
             )
         })
     }
@@ -45,12 +45,20 @@ function GameRender(props) {
 
     return(
         <div>
+            {props.remainingGuesses > 0 ? 
             <h3>Type a letter to start guessing</h3>
-            <p>Category: {props.category}</p>
+            :
+            <h3>Click "play again" to choose a new word!</h3>
+            }
+            
+            <p style={{marginTop: "4em"}}>Category: {props.capitaliseFirstLetter(props.category)}</p>
             <label>Used Letters: </label>
             {renderGuesses()}
             <br/>
+            <div className="answer">
             {renderLetters()}
+            </div>
+            
         </div>
     )
 }

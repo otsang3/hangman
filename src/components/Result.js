@@ -3,14 +3,17 @@ import React from 'react';
 function Result(props) {
 
     return(
-        <div>
+        <div className="result-container">
             {props.remainingLetters === 0 ?
             <h1>Well Done!</h1>
             :
-            <h1>Unlucky!</h1>
+            <div>
+                <h1>Unlucky!</h1>
+                <h3>The word was {props.capitaliseFirstLetter(props.word)}</h3>
+            </div>
             }
-            <h3>The word was {props.word}</h3>
-            <button onClick={props.resetGame}>Play again</button>
+            
+            <button className="reset-button" onClick={props.resetGame}>Play again</button>
         </div>
     )
 }
