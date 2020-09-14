@@ -36,12 +36,13 @@ function GameWindow() {
             return false;
         } else {
             for (let char of state.guesses) {
+                console.log(char);
+                console.log(letter);
                 if (char === letter) {
                     return true;
-                } else {
-                    return false;
-                }
+                } 
             }
+            return false;
         }
     }
 
