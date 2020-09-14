@@ -3,10 +3,9 @@ import React, { useEffect } from 'react';
 function GameRender(props) {
 
     const keypressHandler = (e) => {
-        console.log(props.guesses);
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
-        if (alphabet.includes(e.key)) {
-            props.guessLetter(e.key);
+        if (alphabet.includes(e.key.toLowerCase())) {
+            props.guessLetter(e.key.toLowerCase());
         } else {
             console.log("invalid key")
         }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { wordsArr } from '../apis/WordApi';
 import GameRender from './GameRender';
+import Result from './Result';
 import StartScreen from './StartScreen';
 
 function GameWindow() {
@@ -36,8 +37,6 @@ function GameWindow() {
             return false;
         } else {
             for (let char of state.guesses) {
-                console.log(char);
-                console.log(letter);
                 if (char === letter) {
                     return true;
                 } 
@@ -76,6 +75,7 @@ function GameWindow() {
 
     const guessLetter = (letter) => {
 
+        if (state.remainingGuesses > 0 || state.remainingLetters === 0) {
             let keyRepeat = checkForRepeat(letter)
             if (!keyRepeat) {
                 if (!state.word.includes(letter)) {
@@ -84,30 +84,35 @@ function GameWindow() {
                     return correctGuess(letter);
                 }
             }
-        }
+        }        
+    }
     
 
     const selectCategory = (category) => {
         setState(prevState => {
             return {
                 ...prevState,
-                category: category
+                category: category,
+                playGame: true
             }
         }, getWord(category))
     }
 
     return(
         <div>
-            {console.log(state.guesses)}
-            {state.category && state.remainingGuesses > 0 ? 
+            {!state.playGame &&
+            <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>
+            }
+            {(state.remainingLetters != 0 || state.remainingGuesses > 0) && state.category &&
             <GameRender 
             category={state.category} 
             guesses={state.guesses} 
             guessLetter={guessLetter}
             word={state.word}
             wrongLetters={state.wrongLetters}/> 
-            :
-            <StartScreen getWord={getWord} selectCategory={selectCategory} words={wordsArr}/>
+            }
+            {(state.remainingGuesses === 0 || state.remainingLetters === 0) &&
+            <Result remainingLetters={state.remainingLetters} word={state.word}/>
             }
         </div>
     )
