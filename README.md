@@ -1,6 +1,8 @@
 DEMO App: [jshangman.herokuapp.com](jshangman.herokuapp.com)
 
 ![demo app screenshot](./src/images/screenshot.png)
+![demo app screenshot](./src/images/screenshot2.png)
+![demo app screenshot](./src/images/screenshot3.png)
 
 ## Available Scripts
 
