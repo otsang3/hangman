@@ -45,7 +45,7 @@ function GameRender(props) {
 
     return(
         <div>
-            {props.remainingGuesses > 0 ? 
+            {(props.remainingLetters !== 0 || props.remainingGuesses > 0) ? 
             <h3>Type a letter to start guessing</h3>
             :
             <h3>Click "Play again" to choose a new word!</h3>

@@ -115,13 +115,14 @@ function GameWindow() {
             selectCategory={selectCategory} 
             words={wordsArr}/>
             }
-            {(state.remainingLetters != 0 || state.remainingGuesses > 0) && state.category &&
+            {(state.remainingLetters !== 0 || state.remainingGuesses > 0) && state.category &&
             <GameRender 
             capitaliseFirstLetter={capitaliseFirstLetter}
             category={state.category} 
             guesses={state.guesses} 
             guessLetter={guessLetter}
             remainingGuesses={state.remainingGuesses}
+            remainingLetters={state.remainingLetters}
             word={state.word}/> 
             }
             {(state.remainingGuesses === 0 || state.remainingLetters === 0) &&
