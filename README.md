@@ -1,4 +1,4 @@
-DEMO App: [jshangman.herokuapp.com](jshangman.herokuapp.com)
+DEMO App: [https://jshangman.herokuapp.com](https://jshangman.herokuapp.com)
 
 ![demo app screenshot](./src/images/screenshot.png)
 ![demo app screenshot](./src/images/screenshot2.png)
