@@ -24,6 +24,17 @@ function GameRender(props) {
         })
     }
 
+    const renderHeader = () => {
+        if (props.remainingLetters == 0 || props.remainingGuesses == 0) {
+            return(
+                <h3>Click "Play again" to choose a new word!</h3>
+            )
+        }
+        return(
+            <h3>Type a letter to start guessing</h3>
+        )
+    }
+
     const renderLetters = () => {
         let lettersArr = []
         const wordSplit = props.word.split("")
@@ -45,11 +56,7 @@ function GameRender(props) {
 
     return(
         <div>
-            {(props.remainingLetters !== 0 || props.remainingGuesses > 0) ? 
-            <h3>Type a letter to start guessing</h3>
-            :
-            <h3>Click "Play again" to choose a new word!</h3>
-            }
+            {renderHeader()}
             <div className="subheader-container">
                 <p>Category: {props.capitaliseFirstLetter(props.category)}</p>
                 <p>Remaining Guesses: {props.remainingGuesses}</p>
