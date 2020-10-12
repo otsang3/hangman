@@ -36,12 +36,15 @@ export const wordsArr = [
             countries: [
                 "argentina",
                 "brazil",
+                "columbia",
                 "england",
                 "france",
+                "italy",
                 "germany",
                 "portugal",
                 "scotland",
                 "spain",
+                "sweden",
                 "uruguay",
                 "wales"
             ],
@@ -52,10 +55,13 @@ export const wordsArr = [
                 "cricket",
                 "football",
                 "golf",
+                "hockey",
+                "polo",
                 "pool",
                 "snooker",
                 "swimming",
-                "tennis"
+                "tennis",
+                "volleyball"
             ]   
         }
     }
