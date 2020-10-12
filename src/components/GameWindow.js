@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { wordsArr } from '../apis/WordApi';
 import GameRender from './GameRender';
 import Result from './Result';
 import StartScreen from './StartScreen';
 
+
+toast.configure();
 function GameWindow() {
 
     const initialState = {
@@ -17,6 +21,16 @@ function GameWindow() {
     }
 
     const [state, setState] = useState(initialState);
+
+    const notify = () => {
+        toast.error('Letter has already been used!',{
+            position: "top-center",
+            autoClose: 1750,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: false
+        })
+    }
 
     const getWord = (category) => {
         const categoryArr = wordsArr[0].categories[category]
@@ -42,6 +56,7 @@ function GameWindow() {
         } else {
             for (let char of state.guesses) {
                 if (char === letter) {
+                    notify();
                     return true;
                 } 
             }
@@ -132,6 +147,7 @@ function GameWindow() {
             resetGame={resetGame} 
             word={state.word}/>
             }
+            <ToastContainer style={{width: "18em", textAlign: "center"}} limit={1}/>
         </div>
     )
 }

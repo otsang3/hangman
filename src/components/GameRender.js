@@ -25,7 +25,7 @@ function GameRender(props) {
     }
 
     const renderHeader = () => {
-        if (props.remainingLetters == 0 || props.remainingGuesses == 0) {
+        if (props.remainingLetters === 0 || props.remainingGuesses === 0) {
             return(
                 <h3>Click "Play again" to choose a new word!</h3>
             )
