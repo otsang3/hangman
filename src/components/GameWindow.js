@@ -65,18 +65,11 @@ function GameWindow() {
     }
 
     const correctGuess = (letter) => {
-        const wordSplit = state.word.split("");
-        let occurrence = 0;
-        for (let char of wordSplit) {
-            if (letter === char) {
-                occurrence += 1
-            }
-        }
         setState(prevState => {
             return {
                 ...prevState,
                 guesses: [...prevState.guesses, letter],
-                remainingLetters: prevState.remainingLetters - occurrence
+                remainingLetters: prevState.remainingLetters - 1
             }
         })
     }
