@@ -94,7 +94,7 @@ function GameWindow() {
                     return incorrectGuess(letter);
                 } else {
                     let count = 0;
-                    state.word.split("").forEach(char => char == letter ? count ++ : null);
+                    state.word.split("").forEach(char => char === letter ? count ++ : null);
                     return correctGuess(letter, count);
                 }
             }
