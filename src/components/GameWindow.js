@@ -64,12 +64,12 @@ function GameWindow() {
         }
     }
 
-    const correctGuess = (letter) => {
+    const correctGuess = (letter, occurrence) => {
         setState(prevState => {
             return {
                 ...prevState,
                 guesses: [...prevState.guesses, letter],
-                remainingLetters: prevState.remainingLetters - 1
+                remainingLetters: prevState.remainingLetters - occurrence
             }
         })
     }
@@ -93,7 +93,9 @@ function GameWindow() {
                 if (!state.word.includes(letter)) {
                     return incorrectGuess(letter);
                 } else {
-                    return correctGuess(letter);
+                    let count = 0;
+                    state.word.split("").forEach(char => char == letter ? count ++ : null);
+                    return correctGuess(letter, count);
                 }
             }
         }        
